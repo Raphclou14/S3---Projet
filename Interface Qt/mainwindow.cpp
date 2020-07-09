@@ -59,9 +59,20 @@ void MainWindow::receiveFromSerial(QString msg){
             QString buff = jsonResponse.toJson(QJsonDocument::Indented);
 
             // Affichage des messages Json
-            ui->textBrowser->setText(jsonObj["kp_angle"]);
-jsonObj[]
+            ui->textBrowser->setText(buff.mid(2,buff.length()-4));
 
+           // QStringList mess = buff.split('/');
+           // qDebug().noquote() <<"Nb message: "  <<mess.length();
+         /*   if(mess.length()>1){
+                QString mess1 = mess.at(0);
+                QString mess2 = mess.at(1);
+                QString mess3 = mess.at(2);
+                QString mess4 = mess.at(3);
+
+                ui->textBrowser_1->setText(mess2);
+                ui->textBrowser_2->setText(mess3);
+                ui->textBrowser_3->setText(mess4);
+           }*/
             // Affichage des donnees dans le graph
             if(jsonObj.contains(JsonKey_)){
                 double time = jsonObj["time"].toDouble();

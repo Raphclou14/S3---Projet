@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>658</width>
-    <height>485</height>
+    <width>817</width>
+    <height>460</height>
    </rect>
   </property>
   <property name="acceptDrops">
@@ -17,51 +17,12 @@
    <string>Interface Identification</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="Port_label">
-    <property name="geometry">
-     <rect>
-      <x>5</x>
-      <y>5</y>
-      <width>24</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Port:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="Message_Json_label">
-    <property name="geometry">
-     <rect>
-      <x>208</x>
-      <y>5</y>
-      <width>137</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Messages Json de l'Arduino:</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBoxPort">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>5</y>
-      <width>65</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QChartView" name="graph">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>260</y>
-      <width>461</width>
+      <width>511</width>
       <height>192</height>
      </rect>
     </property>
@@ -69,9 +30,9 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>5</x>
-      <y>33</y>
-      <width>195</width>
+      <x>10</x>
+      <y>40</y>
+      <width>211</width>
       <height>43</height>
      </rect>
     </property>
@@ -101,196 +62,8 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>30</y>
-      <width>251</width>
-      <height>221</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout_3">
-     <item row="0" column="0" colspan="2">
-      <widget class="QTextBrowser" name="textBrowser">
-       <property name="font">
-        <font>
-         <pointsize>9</pointsize>
-        </font>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QTextBrowser" name="textBrowser_angle"/>
-     </item>
-     <item row="1" column="1">
-      <widget class="QTextBrowser" name="textBrowser_x"/>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>30</y>
-      <width>181</width>
-      <height>184</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout_4">
-     <item row="1" column="0">
-      <widget class="QLabel" name="angle_pos_label">
-       <property name="text">
-        <string>Position</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="angle_pos_lineEdit"/>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLineEdit" name="angle_kd_lineEdit"/>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="angle_ki_label">
-       <property name="text">
-        <string>ki</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="angle_kp_label">
-       <property name="text">
-        <string>kp</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QLineEdit" name="angle_seuil_lineEdit"/>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLineEdit" name="angle_kp_lineEdit"/>
-     </item>
-     <item row="0" column="0" colspan="3">
-      <widget class="QLabel" name="Envoie_label">
-       <property name="text">
-        <string>ANGLE</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="angle_seuil_label">
-       <property name="text">
-        <string>Seuil</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLineEdit" name="angle_ki_lineEdit"/>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="angle_kd_label">
-       <property name="text">
-        <string>kd</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="0" colspan="2">
-      <widget class="QPushButton" name="angle_envoie_pushButton">
-       <property name="layoutDirection">
-        <enum>Qt::LeftToRight</enum>
-       </property>
-       <property name="text">
-        <string>Envoie des paramètres</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>260</y>
-      <width>187</width>
-      <height>184</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout_5">
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="x_pos_lineEdit"/>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="x_pos_label">
-       <property name="text">
-        <string>Position</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="x_ki_label">
-       <property name="text">
-        <string>ki</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QLineEdit" name="x_seuil_lineEdit"/>
-     </item>
-     <item row="6" column="0" colspan="2">
-      <widget class="QPushButton" name="x_envoie_pushButton">
-       <property name="text">
-        <string>Envoie des paramètres</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="x_kd_label">
-       <property name="text">
-        <string>kd</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="x_kp_label">
-       <property name="text">
-        <string>kp</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLineEdit" name="x_kp_lineEdit"/>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLineEdit" name="x_ki_lineEdit"/>
-     </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="x_seuil_label">
-       <property name="text">
-        <string>Seuil</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLineEdit" name="x_kd_lineEdit"/>
-     </item>
-     <item row="0" column="0" colspan="2">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>POSITION</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>1</x>
-      <y>91</y>
+      <x>10</x>
+      <y>90</y>
       <width>206</width>
       <height>161</height>
      </rect>
@@ -389,6 +162,214 @@
       <widget class="QPushButton" name="pulseButton">
        <property name="text">
         <string>Commande de pulse</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>10</y>
+      <width>258</width>
+      <height>441</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_3">
+     <item row="0" column="0">
+      <widget class="QLabel" name="Message_Json_label">
+       <property name="text">
+        <string>Messages Json de l'Arduino:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QTextBrowser" name="textBrowser"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>5</y>
+      <width>211</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_6">
+     <item row="0" column="0">
+      <widget class="QLabel" name="Port_label">
+       <property name="text">
+        <string>Port:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QComboBox" name="comboBoxPort"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>10</y>
+      <width>137</width>
+      <height>184</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_4">
+     <item row="1" column="1">
+      <widget class="QLabel" name="Envoie_label">
+       <property name="text">
+        <string>ANGLE</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="angle_pos_label">
+       <property name="text">
+        <string>Position</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0" colspan="2">
+      <widget class="QPushButton" name="angle_envoie_pushButton">
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>Envoyer</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="angle_pos_lineEdit"/>
+     </item>
+     <item row="6" column="0">
+      <widget class="QLabel" name="angle_seuil_label">
+       <property name="text">
+        <string>Seuil</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="angle_kd_label">
+       <property name="text">
+        <string>kd</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QLineEdit" name="angle_seuil_lineEdit"/>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="angle_ki_label">
+       <property name="text">
+        <string>ki</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="angle_kp_lineEdit"/>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLineEdit" name="angle_kd_lineEdit"/>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="angle_kp_label">
+       <property name="text">
+        <string>kp</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="angle_ki_lineEdit"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>10</y>
+      <width>137</width>
+      <height>184</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_5">
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="x_pos_lineEdit"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="x_pos_label">
+       <property name="text">
+        <string>Position</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="x_ki_label">
+       <property name="text">
+        <string>ki</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLineEdit" name="x_seuil_lineEdit"/>
+     </item>
+     <item row="6" column="0" colspan="2">
+      <widget class="QPushButton" name="x_envoie_pushButton">
+       <property name="text">
+        <string>Envoyer</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="x_kd_label">
+       <property name="text">
+        <string>kd</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="x_kp_label">
+       <property name="text">
+        <string>kp</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="x_kp_lineEdit"/>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="x_ki_lineEdit"/>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="x_seuil_label">
+       <property name="text">
+        <string>Seuil</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="x_kd_lineEdit"/>
+     </item>
+     <item row="0" column="0" colspan="2">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>POSITION</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
