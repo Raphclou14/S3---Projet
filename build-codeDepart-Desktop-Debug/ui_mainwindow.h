@@ -85,6 +85,11 @@ public:
     QLabel *x_seuil_label;
     QLineEdit *x_kd_lineEdit;
     QLabel *label;
+    QWidget *layoutWidget6;
+    QGridLayout *gridLayout_7;
+    QLabel *label_etatrobot;
+    QLineEdit *lineEdit_etatrobot;
+    QPushButton *pushButton_etatrobot;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -357,6 +362,29 @@ public:
 
         gridLayout_5->addWidget(label, 0, 0, 1, 2);
 
+        layoutWidget6 = new QWidget(centralWidget);
+        layoutWidget6->setObjectName(QStringLiteral("layoutWidget6"));
+        layoutWidget6->setGeometry(QRect(230, 220, 281, 24));
+        gridLayout_7 = new QGridLayout(layoutWidget6);
+        gridLayout_7->setSpacing(6);
+        gridLayout_7->setContentsMargins(11, 11, 11, 11);
+        gridLayout_7->setObjectName(QStringLiteral("gridLayout_7"));
+        gridLayout_7->setContentsMargins(0, 0, 0, 0);
+        label_etatrobot = new QLabel(layoutWidget6);
+        label_etatrobot->setObjectName(QStringLiteral("label_etatrobot"));
+
+        gridLayout_7->addWidget(label_etatrobot, 0, 0, 1, 1);
+
+        lineEdit_etatrobot = new QLineEdit(layoutWidget6);
+        lineEdit_etatrobot->setObjectName(QStringLiteral("lineEdit_etatrobot"));
+
+        gridLayout_7->addWidget(lineEdit_etatrobot, 0, 1, 1, 1);
+
+        pushButton_etatrobot = new QPushButton(layoutWidget6);
+        pushButton_etatrobot->setObjectName(QStringLiteral("pushButton_etatrobot"));
+
+        gridLayout_7->addWidget(pushButton_etatrobot, 0, 2, 1, 1);
+
         MainWindow->setCentralWidget(centralWidget);
 
         retranslateUi(MainWindow);
@@ -395,6 +423,8 @@ public:
         x_kp_label->setText(QApplication::translate("MainWindow", "kp", Q_NULLPTR));
         x_seuil_label->setText(QApplication::translate("MainWindow", "Seuil", Q_NULLPTR));
         label->setText(QApplication::translate("MainWindow", "POSITION", Q_NULLPTR));
+        label_etatrobot->setText(QApplication::translate("MainWindow", "Etat du robot", Q_NULLPTR));
+        pushButton_etatrobot->setText(QApplication::translate("MainWindow", "Envoyer", Q_NULLPTR));
     } // retranslateUi
 
 };

@@ -119,6 +119,7 @@ void MainWindow::connectButtons(){
     connect(ui->x_envoie_pushButton, SIGNAL(clicked()), this, SLOT(sendPID_x()));
     connect(ui->enable_pushButton,SIGNAL(clicked()),this,SLOT(enable()));
     connect(ui->disable_pushButton,SIGNAL(clicked()),this,SLOT(disable()));
+    connect(ui->pushButton_etatrobot,SIGNAL(clicked()),this,SLOT(etat_robot()));
 }
 
 void MainWindow::connectSpinBoxes(){
@@ -209,6 +210,22 @@ void MainWindow::sendPID_x(){
     sendMessage(strJson);
 }
 
+
+void MainWindow::etat_robot(){
+    // Fonction SLOT pour envoyer les paramettres de pulse
+    int etat_robot = ui->lineEdit_etatrobot->text().toDouble();
+
+    QJsonObject jsonObject
+    {// pour minimiser le nombre de decimales( QString::number)
+        {"etat", etat_robot},
+    };
+    QJsonDocument doc(jsonObject);
+    QString strJson(doc.toJson(QJsonDocument::Compact));
+    sendMessage(strJson);
+}
+
+
+
 void MainWindow::enable(){
     QJsonObject jsonObject
     {
@@ -218,6 +235,7 @@ void MainWindow::enable(){
     QString strJson(doc.toJson(QJsonDocument::Compact));
     sendMessage(strJson);
 }
+
 
 void MainWindow::disable(){
     QJsonObject jsonObject

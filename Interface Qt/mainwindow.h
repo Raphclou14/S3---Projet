@@ -52,6 +52,7 @@ private slots:
     void sendPID_x();
     void enable();
     void disable();
+    void etat_robot();
 
 private:
     void connectTimers(int updateRate);
