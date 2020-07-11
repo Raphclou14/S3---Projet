@@ -1,39 +1,36 @@
 #include "init_main.h"
-double pwm_command, a_cst, x_cst;
+double a_cst, x_cst;
 
 void etat1();
 void etat2();
 void read();
-void led(){
-  digitalWrite(23, HIGH); //rouge
-  digitalWrite(25, HIGH);  //bleu
-}
+
 void setup()
 {
   init_main();
-  init_a_pid();
+  //init_a_pid();
   init_x_pid();
+  // init_a_x_pid();
+  ptr_a_x = &a_x_read;
+  init_a_pid();
   pinMode(23, OUTPUT);
   pinMode(25, OUTPUT);
-  ptr_at_goal = &led;
-  a_pid.setAtGoalFunc(ptr_at_goal);
 }
 
 void loop()
 {
   switch (etat_robot)
   {
-  case 1:               //si etat_robot == 1, faire allumé les leds en fonction de l'état du pid
-    a_pid.run();        //pid pour la stabilisation de l'angle
-
-
-    read();               //lecture des données provenant de l'interface -> voir plus bas
-    break;
-  case 2:                 //si etat_robot == 2, faire allumé les deux leds
-    digitalWrite(23, HIGH); //rouge
-    digitalWrite(25, LOW); //bleu
+  case 1:
+    a_pid.run();
     read();
-    //etat2();
+    break;
+  case 2:
+    x_command = x_pid.returnCommand();
+    a_param[4] = 0 - x_command;
+    a_pid.setGoal(a_param[4]);
+    a_pid.run();
+    read();
     break;
 
   default:
@@ -56,21 +53,32 @@ void read()
   a_pid.setGains(a_param[0], a_param[1], a_param[2]);
   a_pid.setEpsilon(a_param[3]);
   a_pid.setGoal(a_param[4]);
-  
+
   //Assignation des différents paramètres de la position au pid de la position
   x_pid.setGains(x_param[0], x_param[1], x_param[2]);
   x_pid.setEpsilon(x_param[3]);
   x_pid.setGoal(x_param[4]);
 }
 
-/*
-void etat1()
+/*void etat1()
 { //on veut uniquement que le robot se stabilise, donc a_pid.run()
   a_pid.run();
 
   read();
 }
+*/
+/*void etat2()
+{
+  a_param[4] = -4; //inclinaision du robot pour avance
+  read();
 
+  x_command = x_pid.returnCommand();
+  pwm_command = (a_command * a_cst) + (x_command * x_cst);
+  motor_command(pwm_command);
+  
+}*/
+
+/*
 void etat2()
 {
   /*double x_cst = 0.3, a_cst = (1 - x_cst), pwm_command;
@@ -89,7 +97,6 @@ void etat2()
   etat_robot = 1;
   read();
 }*/
-
 
 /*
  if (x_param[4] != 0)

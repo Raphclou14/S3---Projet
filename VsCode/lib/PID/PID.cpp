@@ -47,7 +47,7 @@ void PID::run(){
         // if goal reached
         if(fabs(error)<epsilon_){
             if (atGoalFunc != nullptr){
-		atGoal_ = true;
+		        atGoal_ = true;
             	enable_ = false;
                 atGoalFunc();
             }
