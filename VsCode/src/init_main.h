@@ -7,6 +7,7 @@
 #include <SoftTimer.h>
 #include <ArduinoJson.h>
 #include <PID.h>
+#include <PID_v1.h>
 #include <Arduino.h>
 /*------------------------------ Constantes ---------------------------------*/
 
@@ -55,6 +56,15 @@ bool x_pid_state = false;
 int etat_robot = 1; //1: stablisation, 2: position + stabilisation
 
 double a_command = 0, x_command = 0, pwm_command = 0;
+
+double commande;
+double setPoint = 0;
+double kp = 0, ki = 0, kd = 0;
+PID_v1 angle_pid(&angleX, &commande, &setPoint, kp,ki, kd, DIRECT);
+void init_pid(){
+  angle_pid.SetOutputLimits(-255, 255);
+  angle_pid.SetMode(AUTOMATIC);
+}
 /*---------------------------Definition de fonctions ------------------------*/
 void serialEvent()
 {
@@ -218,7 +228,8 @@ void init_a_pid()
   ptr_a_read = &a_read;
   a_pid.setCommandFunc(ptr_motor_command);
   a_pid.setMeasurementFunc(ptr_a_read);
-  a_pid.setPeriod(10);
+  a_pid.setPeriod(5);
+  //a_pid.setIntegralLim(1);
   a_pid.enable();
 }
 

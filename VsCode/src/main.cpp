@@ -4,12 +4,22 @@ double a_cst, x_cst;
 void etat1();
 void etat2();
 void read();
+void print()
+{
+  Serial.print("Angle: ");
+  Serial.print(angleX);
+  Serial.print("   Commande:  ");
+  Serial.print(commande);
+  Serial.print("  kd:  ");
+  Serial.println(kd);
+}
 
 void setup()
 {
   init_main();
-  //init_a_pid();
+  init_a_pid();
   init_x_pid();
+  init_pid();
   // init_a_x_pid();
   ptr_a_x = &a_x_read;
   init_a_pid();
@@ -19,24 +29,32 @@ void setup()
 
 void loop()
 {
+  kd = map(analogRead(A7), 0, 1023, 0, 100);
+  angle_pid.SetTunings(38, 0,kd);
+  angleX = a_read();
+  angle_pid.Compute();
+  motor_.setPWM(commande);
+  print();
+  delay(10);
+  /*
   switch (etat_robot)
   {
-  case 1:
+  case 1: //Robot inactif
+  
+    read();
+    break;
+  case 2: //Stabilisation
     a_pid.run();
     read();
     break;
-  case 2:
-    x_command = x_pid.returnCommand();
+  case 3: //Deplacement
+     x_command = x_pid.returnCommand();
     a_param[4] = 0 - x_command;
     a_pid.setGoal(a_param[4]);
     a_pid.run();
     read();
     break;
-
-  default:
-
-    break;
-  }
+  }*/
 }
 
 void read()

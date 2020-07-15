@@ -21,11 +21,11 @@ MotorControl::MotorControl(uint8_t PWMPin, uint8_t Input1Pin, uint8_t Input2Pin,
 void MotorControl::setPWM(float pwm){
       digitalWrite(StandbyPin_, HIGH);
       // Verify speed between [-1, 1]
-      if(pwm>1){
-        pwm = 1;
+      if(pwm>255){
+        pwm = 255;
       }
-      if(pwm<-1){
-        pwm = -1;
+      if(pwm<-255){
+        pwm = -255;
       }
       // Motor direction
       if(pwm>0){
@@ -37,7 +37,7 @@ void MotorControl::setPWM(float pwm){
       }
       // Set PWM
       pwm = fabs(pwm);
-      analogWrite(PWMPin_, 255*pwm);
+      analogWrite(PWMPin_, pwm);
 }
 void MotorControl::disable(){
       analogWrite(PWMPin_, 0);

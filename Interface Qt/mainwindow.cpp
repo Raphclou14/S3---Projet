@@ -171,6 +171,14 @@ void MainWindow::sendPID(){
     double thresh = ui->angle_seuil_lineEdit->text().toDouble();
     // pour minimiser le nombre de decimales( QString::number)
 
+    //Affichage des valeurs sur l'interface
+    //ne confirme pas que l'arduino a bien recu la valeur
+    ui->angle_label_pos->setText(QString::number(goal));
+    ui->angle_label_kp->setText(QString::number(Kp));
+    ui->angle_label_ki->setText(QString::number(Ki));
+    ui->angle_label_kd->setText(QString::number(Kd));
+    ui->angle_label_seuil->setText(QString::number(thresh));
+
     QJsonArray array = { QString::number(Kp, 'f', 2),
                          QString::number(Ki, 'f', 2),
                          QString::number(Kd, 'f', 2),
@@ -195,6 +203,14 @@ void MainWindow::sendPID_x(){
     double thresh = ui->x_seuil_lineEdit->text().toDouble();
     // pour minimiser le nombre de decimales( QString::number)
 
+    //Affichage des valeurs sur l'interface
+    //ne confirme pas que l'arduino a bien recu la valeur
+    ui->x_label_pos->setText(QString::number(goal));
+    ui->x_label_kp->setText(QString::number(Kp));
+    ui->x_label_ki->setText(QString::number(Ki));
+    ui->x_label_kd->setText(QString::number(Kd));
+    ui->x_label_seuil->setText(QString::number(thresh));
+
     QJsonArray array = { QString::number(Kp, 'f', 2),
                          QString::number(Ki, 'f', 2),
                          QString::number(Kd, 'f', 2),
@@ -215,6 +231,17 @@ void MainWindow::etat_robot(){
     // Fonction SLOT pour envoyer les paramettres de pulse
     int etat_robot = ui->lineEdit_etatrobot->text().toDouble();
 
+
+
+    if(etat_robot == 2){
+        ui->label_activation_robot->setText("Stabilisation");
+    }
+    else if(etat_robot == 3){
+        ui->label_activation_robot->setText("Deplacement");
+    }
+    else{
+        ui->label_activation_robot->setText("Inactif");
+    }
     QJsonObject jsonObject
     {// pour minimiser le nombre de decimales( QString::number)
         {"etat", etat_robot},
