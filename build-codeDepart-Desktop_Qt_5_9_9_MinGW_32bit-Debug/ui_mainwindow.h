@@ -57,7 +57,7 @@ public:
     QGridLayout *gridLayout_6;
     QLabel *Port_label;
     QComboBox *comboBoxPort;
-    QWidget *widget;
+    QWidget *layoutWidget4;
     QGridLayout *gridLayout_5;
     QLabel *label;
     QLabel *x_label_valeur;
@@ -77,7 +77,7 @@ public:
     QLineEdit *x_seuil_lineEdit;
     QLabel *x_label_seuil;
     QPushButton *x_envoie_pushButton;
-    QWidget *widget1;
+    QWidget *layoutWidget5;
     QGridLayout *gridLayout_4;
     QLabel *Envoie_label;
     QLabel *angle_label_valeur;
@@ -97,12 +97,22 @@ public:
     QLineEdit *angle_seuil_lineEdit;
     QLabel *angle_label_seuil;
     QPushButton *angle_envoie_pushButton;
-    QWidget *widget2;
+    QWidget *layoutWidget6;
     QGridLayout *gridLayout_7;
     QLabel *label_etatrobot;
     QLineEdit *lineEdit_etatrobot;
     QPushButton *pushButton_etatrobot;
     QLabel *label_activation_robot;
+    QWidget *widget;
+    QGridLayout *gridLayout_8;
+    QLabel *label_a_cst;
+    QLineEdit *lineEdit_a_cst;
+    QPushButton *pushButton_a_cst;
+    QLabel *label_a_cst_val;
+    QLabel *label_x_cst;
+    QLineEdit *lineEdit_x_cst;
+    QPushButton *pushButton_x_cst;
+    QLabel *label_x_cst_val;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -236,234 +246,282 @@ public:
 
         gridLayout_6->addWidget(comboBoxPort, 0, 1, 1, 1);
 
-        widget = new QWidget(centralWidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(231, 11, 191, 184));
-        gridLayout_5 = new QGridLayout(widget);
+        layoutWidget4 = new QWidget(centralWidget);
+        layoutWidget4->setObjectName(QStringLiteral("layoutWidget4"));
+        layoutWidget4->setGeometry(QRect(231, 11, 191, 184));
+        gridLayout_5 = new QGridLayout(layoutWidget4);
         gridLayout_5->setSpacing(6);
         gridLayout_5->setContentsMargins(11, 11, 11, 11);
         gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
         gridLayout_5->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(widget);
+        label = new QLabel(layoutWidget4);
         label->setObjectName(QStringLiteral("label"));
         label->setAlignment(Qt::AlignCenter);
 
         gridLayout_5->addWidget(label, 0, 0, 1, 2);
 
-        x_label_valeur = new QLabel(widget);
+        x_label_valeur = new QLabel(layoutWidget4);
         x_label_valeur->setObjectName(QStringLiteral("x_label_valeur"));
 
         gridLayout_5->addWidget(x_label_valeur, 0, 2, 1, 1);
 
-        x_pos_label = new QLabel(widget);
+        x_pos_label = new QLabel(layoutWidget4);
         x_pos_label->setObjectName(QStringLiteral("x_pos_label"));
 
         gridLayout_5->addWidget(x_pos_label, 1, 0, 1, 1);
 
-        x_pos_lineEdit = new QLineEdit(widget);
+        x_pos_lineEdit = new QLineEdit(layoutWidget4);
         x_pos_lineEdit->setObjectName(QStringLiteral("x_pos_lineEdit"));
 
         gridLayout_5->addWidget(x_pos_lineEdit, 1, 1, 1, 1);
 
-        x_label_pos = new QLabel(widget);
+        x_label_pos = new QLabel(layoutWidget4);
         x_label_pos->setObjectName(QStringLiteral("x_label_pos"));
 
         gridLayout_5->addWidget(x_label_pos, 1, 2, 1, 1);
 
-        x_kp_label = new QLabel(widget);
+        x_kp_label = new QLabel(layoutWidget4);
         x_kp_label->setObjectName(QStringLiteral("x_kp_label"));
 
         gridLayout_5->addWidget(x_kp_label, 2, 0, 1, 1);
 
-        x_kp_lineEdit = new QLineEdit(widget);
+        x_kp_lineEdit = new QLineEdit(layoutWidget4);
         x_kp_lineEdit->setObjectName(QStringLiteral("x_kp_lineEdit"));
 
         gridLayout_5->addWidget(x_kp_lineEdit, 2, 1, 1, 1);
 
-        x_label_kp = new QLabel(widget);
+        x_label_kp = new QLabel(layoutWidget4);
         x_label_kp->setObjectName(QStringLiteral("x_label_kp"));
 
         gridLayout_5->addWidget(x_label_kp, 2, 2, 1, 1);
 
-        x_ki_label = new QLabel(widget);
+        x_ki_label = new QLabel(layoutWidget4);
         x_ki_label->setObjectName(QStringLiteral("x_ki_label"));
 
         gridLayout_5->addWidget(x_ki_label, 3, 0, 1, 1);
 
-        x_ki_lineEdit = new QLineEdit(widget);
+        x_ki_lineEdit = new QLineEdit(layoutWidget4);
         x_ki_lineEdit->setObjectName(QStringLiteral("x_ki_lineEdit"));
 
         gridLayout_5->addWidget(x_ki_lineEdit, 3, 1, 1, 1);
 
-        x_label_ki = new QLabel(widget);
+        x_label_ki = new QLabel(layoutWidget4);
         x_label_ki->setObjectName(QStringLiteral("x_label_ki"));
 
         gridLayout_5->addWidget(x_label_ki, 3, 2, 1, 1);
 
-        x_kd_label = new QLabel(widget);
+        x_kd_label = new QLabel(layoutWidget4);
         x_kd_label->setObjectName(QStringLiteral("x_kd_label"));
 
         gridLayout_5->addWidget(x_kd_label, 4, 0, 1, 1);
 
-        x_kd_lineEdit = new QLineEdit(widget);
+        x_kd_lineEdit = new QLineEdit(layoutWidget4);
         x_kd_lineEdit->setObjectName(QStringLiteral("x_kd_lineEdit"));
 
         gridLayout_5->addWidget(x_kd_lineEdit, 4, 1, 1, 1);
 
-        x_label_kd = new QLabel(widget);
+        x_label_kd = new QLabel(layoutWidget4);
         x_label_kd->setObjectName(QStringLiteral("x_label_kd"));
 
         gridLayout_5->addWidget(x_label_kd, 4, 2, 1, 1);
 
-        x_seuil_label = new QLabel(widget);
+        x_seuil_label = new QLabel(layoutWidget4);
         x_seuil_label->setObjectName(QStringLiteral("x_seuil_label"));
 
         gridLayout_5->addWidget(x_seuil_label, 5, 0, 1, 1);
 
-        x_seuil_lineEdit = new QLineEdit(widget);
+        x_seuil_lineEdit = new QLineEdit(layoutWidget4);
         x_seuil_lineEdit->setObjectName(QStringLiteral("x_seuil_lineEdit"));
 
         gridLayout_5->addWidget(x_seuil_lineEdit, 5, 1, 1, 1);
 
-        x_label_seuil = new QLabel(widget);
+        x_label_seuil = new QLabel(layoutWidget4);
         x_label_seuil->setObjectName(QStringLiteral("x_label_seuil"));
 
         gridLayout_5->addWidget(x_label_seuil, 5, 2, 1, 1);
 
-        x_envoie_pushButton = new QPushButton(widget);
+        x_envoie_pushButton = new QPushButton(layoutWidget4);
         x_envoie_pushButton->setObjectName(QStringLiteral("x_envoie_pushButton"));
 
         gridLayout_5->addWidget(x_envoie_pushButton, 6, 0, 1, 2);
 
-        widget1 = new QWidget(centralWidget);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(430, 11, 191, 184));
-        gridLayout_4 = new QGridLayout(widget1);
+        layoutWidget5 = new QWidget(centralWidget);
+        layoutWidget5->setObjectName(QStringLiteral("layoutWidget5"));
+        layoutWidget5->setGeometry(QRect(430, 11, 191, 184));
+        gridLayout_4 = new QGridLayout(layoutWidget5);
         gridLayout_4->setSpacing(6);
         gridLayout_4->setContentsMargins(11, 11, 11, 11);
         gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
         gridLayout_4->setContentsMargins(0, 0, 0, 0);
-        Envoie_label = new QLabel(widget1);
+        Envoie_label = new QLabel(layoutWidget5);
         Envoie_label->setObjectName(QStringLiteral("Envoie_label"));
         Envoie_label->setAlignment(Qt::AlignCenter);
 
         gridLayout_4->addWidget(Envoie_label, 0, 0, 1, 1);
 
-        angle_label_valeur = new QLabel(widget1);
+        angle_label_valeur = new QLabel(layoutWidget5);
         angle_label_valeur->setObjectName(QStringLiteral("angle_label_valeur"));
 
         gridLayout_4->addWidget(angle_label_valeur, 0, 2, 1, 1);
 
-        angle_pos_label = new QLabel(widget1);
+        angle_pos_label = new QLabel(layoutWidget5);
         angle_pos_label->setObjectName(QStringLiteral("angle_pos_label"));
 
         gridLayout_4->addWidget(angle_pos_label, 1, 0, 1, 1);
 
-        angle_pos_lineEdit = new QLineEdit(widget1);
+        angle_pos_lineEdit = new QLineEdit(layoutWidget5);
         angle_pos_lineEdit->setObjectName(QStringLiteral("angle_pos_lineEdit"));
 
         gridLayout_4->addWidget(angle_pos_lineEdit, 1, 1, 1, 1);
 
-        angle_label_pos = new QLabel(widget1);
+        angle_label_pos = new QLabel(layoutWidget5);
         angle_label_pos->setObjectName(QStringLiteral("angle_label_pos"));
         angle_label_pos->setTextFormat(Qt::AutoText);
         angle_label_pos->setAlignment(Qt::AlignJustify|Qt::AlignVCenter);
 
         gridLayout_4->addWidget(angle_label_pos, 1, 2, 1, 1);
 
-        angle_kp_label = new QLabel(widget1);
+        angle_kp_label = new QLabel(layoutWidget5);
         angle_kp_label->setObjectName(QStringLiteral("angle_kp_label"));
 
         gridLayout_4->addWidget(angle_kp_label, 2, 0, 1, 1);
 
-        angle_kp_lineEdit = new QLineEdit(widget1);
+        angle_kp_lineEdit = new QLineEdit(layoutWidget5);
         angle_kp_lineEdit->setObjectName(QStringLiteral("angle_kp_lineEdit"));
 
         gridLayout_4->addWidget(angle_kp_lineEdit, 2, 1, 1, 1);
 
-        angle_label_kp = new QLabel(widget1);
+        angle_label_kp = new QLabel(layoutWidget5);
         angle_label_kp->setObjectName(QStringLiteral("angle_label_kp"));
 
         gridLayout_4->addWidget(angle_label_kp, 2, 2, 1, 1);
 
-        angle_ki_label = new QLabel(widget1);
+        angle_ki_label = new QLabel(layoutWidget5);
         angle_ki_label->setObjectName(QStringLiteral("angle_ki_label"));
 
         gridLayout_4->addWidget(angle_ki_label, 3, 0, 1, 1);
 
-        angle_ki_lineEdit = new QLineEdit(widget1);
+        angle_ki_lineEdit = new QLineEdit(layoutWidget5);
         angle_ki_lineEdit->setObjectName(QStringLiteral("angle_ki_lineEdit"));
 
         gridLayout_4->addWidget(angle_ki_lineEdit, 3, 1, 1, 1);
 
-        angle_label_ki = new QLabel(widget1);
+        angle_label_ki = new QLabel(layoutWidget5);
         angle_label_ki->setObjectName(QStringLiteral("angle_label_ki"));
 
         gridLayout_4->addWidget(angle_label_ki, 3, 2, 1, 1);
 
-        angle_kd_label = new QLabel(widget1);
+        angle_kd_label = new QLabel(layoutWidget5);
         angle_kd_label->setObjectName(QStringLiteral("angle_kd_label"));
 
         gridLayout_4->addWidget(angle_kd_label, 4, 0, 1, 1);
 
-        angle_kd_lineEdit = new QLineEdit(widget1);
+        angle_kd_lineEdit = new QLineEdit(layoutWidget5);
         angle_kd_lineEdit->setObjectName(QStringLiteral("angle_kd_lineEdit"));
 
         gridLayout_4->addWidget(angle_kd_lineEdit, 4, 1, 1, 1);
 
-        angle_label_kd = new QLabel(widget1);
+        angle_label_kd = new QLabel(layoutWidget5);
         angle_label_kd->setObjectName(QStringLiteral("angle_label_kd"));
 
         gridLayout_4->addWidget(angle_label_kd, 4, 2, 1, 1);
 
-        angle_seuil_label = new QLabel(widget1);
+        angle_seuil_label = new QLabel(layoutWidget5);
         angle_seuil_label->setObjectName(QStringLiteral("angle_seuil_label"));
 
         gridLayout_4->addWidget(angle_seuil_label, 5, 0, 1, 1);
 
-        angle_seuil_lineEdit = new QLineEdit(widget1);
+        angle_seuil_lineEdit = new QLineEdit(layoutWidget5);
         angle_seuil_lineEdit->setObjectName(QStringLiteral("angle_seuil_lineEdit"));
 
         gridLayout_4->addWidget(angle_seuil_lineEdit, 5, 1, 1, 1);
 
-        angle_label_seuil = new QLabel(widget1);
+        angle_label_seuil = new QLabel(layoutWidget5);
         angle_label_seuil->setObjectName(QStringLiteral("angle_label_seuil"));
 
         gridLayout_4->addWidget(angle_label_seuil, 5, 2, 1, 1);
 
-        angle_envoie_pushButton = new QPushButton(widget1);
+        angle_envoie_pushButton = new QPushButton(layoutWidget5);
         angle_envoie_pushButton->setObjectName(QStringLiteral("angle_envoie_pushButton"));
         angle_envoie_pushButton->setLayoutDirection(Qt::LeftToRight);
 
         gridLayout_4->addWidget(angle_envoie_pushButton, 6, 0, 1, 2);
 
-        widget2 = new QWidget(centralWidget);
-        widget2->setObjectName(QStringLiteral("widget2"));
-        widget2->setGeometry(QRect(231, 210, 391, 24));
-        gridLayout_7 = new QGridLayout(widget2);
+        layoutWidget6 = new QWidget(centralWidget);
+        layoutWidget6->setObjectName(QStringLiteral("layoutWidget6"));
+        layoutWidget6->setGeometry(QRect(231, 200, 391, 24));
+        gridLayout_7 = new QGridLayout(layoutWidget6);
         gridLayout_7->setSpacing(6);
         gridLayout_7->setContentsMargins(11, 11, 11, 11);
         gridLayout_7->setObjectName(QStringLiteral("gridLayout_7"));
         gridLayout_7->setContentsMargins(0, 0, 0, 0);
-        label_etatrobot = new QLabel(widget2);
+        label_etatrobot = new QLabel(layoutWidget6);
         label_etatrobot->setObjectName(QStringLiteral("label_etatrobot"));
 
         gridLayout_7->addWidget(label_etatrobot, 0, 0, 1, 1);
 
-        lineEdit_etatrobot = new QLineEdit(widget2);
+        lineEdit_etatrobot = new QLineEdit(layoutWidget6);
         lineEdit_etatrobot->setObjectName(QStringLiteral("lineEdit_etatrobot"));
 
         gridLayout_7->addWidget(lineEdit_etatrobot, 0, 1, 1, 1);
 
-        pushButton_etatrobot = new QPushButton(widget2);
+        pushButton_etatrobot = new QPushButton(layoutWidget6);
         pushButton_etatrobot->setObjectName(QStringLiteral("pushButton_etatrobot"));
 
         gridLayout_7->addWidget(pushButton_etatrobot, 0, 2, 1, 1);
 
-        label_activation_robot = new QLabel(widget2);
+        label_activation_robot = new QLabel(layoutWidget6);
         label_activation_robot->setObjectName(QStringLiteral("label_activation_robot"));
 
         gridLayout_7->addWidget(label_activation_robot, 0, 3, 1, 1);
+
+        widget = new QWidget(centralWidget);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(231, 230, 391, 24));
+        gridLayout_8 = new QGridLayout(widget);
+        gridLayout_8->setSpacing(6);
+        gridLayout_8->setContentsMargins(11, 11, 11, 11);
+        gridLayout_8->setObjectName(QStringLiteral("gridLayout_8"));
+        gridLayout_8->setContentsMargins(0, 0, 0, 0);
+        label_a_cst = new QLabel(widget);
+        label_a_cst->setObjectName(QStringLiteral("label_a_cst"));
+
+        gridLayout_8->addWidget(label_a_cst, 0, 0, 1, 1);
+
+        lineEdit_a_cst = new QLineEdit(widget);
+        lineEdit_a_cst->setObjectName(QStringLiteral("lineEdit_a_cst"));
+
+        gridLayout_8->addWidget(lineEdit_a_cst, 0, 1, 1, 1);
+
+        pushButton_a_cst = new QPushButton(widget);
+        pushButton_a_cst->setObjectName(QStringLiteral("pushButton_a_cst"));
+
+        gridLayout_8->addWidget(pushButton_a_cst, 0, 2, 1, 1);
+
+        label_a_cst_val = new QLabel(widget);
+        label_a_cst_val->setObjectName(QStringLiteral("label_a_cst_val"));
+
+        gridLayout_8->addWidget(label_a_cst_val, 0, 3, 1, 1);
+
+        label_x_cst = new QLabel(widget);
+        label_x_cst->setObjectName(QStringLiteral("label_x_cst"));
+
+        gridLayout_8->addWidget(label_x_cst, 0, 4, 1, 1);
+
+        lineEdit_x_cst = new QLineEdit(widget);
+        lineEdit_x_cst->setObjectName(QStringLiteral("lineEdit_x_cst"));
+
+        gridLayout_8->addWidget(lineEdit_x_cst, 0, 5, 1, 1);
+
+        pushButton_x_cst = new QPushButton(widget);
+        pushButton_x_cst->setObjectName(QStringLiteral("pushButton_x_cst"));
+
+        gridLayout_8->addWidget(pushButton_x_cst, 0, 6, 1, 1);
+
+        label_x_cst_val = new QLabel(widget);
+        label_x_cst_val->setObjectName(QStringLiteral("label_x_cst_val"));
+
+        gridLayout_8->addWidget(label_x_cst_val, 0, 7, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
 
@@ -518,6 +576,12 @@ public:
         label_etatrobot->setText(QApplication::translate("MainWindow", "Etat du robot", Q_NULLPTR));
         pushButton_etatrobot->setText(QApplication::translate("MainWindow", "Envoyer", Q_NULLPTR));
         label_activation_robot->setText(QApplication::translate("MainWindow", "------------------", Q_NULLPTR));
+        label_a_cst->setText(QApplication::translate("MainWindow", "a_cst", Q_NULLPTR));
+        pushButton_a_cst->setText(QApplication::translate("MainWindow", "send", Q_NULLPTR));
+        label_a_cst_val->setText(QApplication::translate("MainWindow", "-----", Q_NULLPTR));
+        label_x_cst->setText(QApplication::translate("MainWindow", "x_cst", Q_NULLPTR));
+        pushButton_x_cst->setText(QApplication::translate("MainWindow", "send", Q_NULLPTR));
+        label_x_cst_val->setText(QApplication::translate("MainWindow", "-----", Q_NULLPTR));
     } // retranslateUi
 
 };

@@ -34,9 +34,9 @@ SoftTimer timerSendMsg_; // chronometre d'envoie de messages
 SoftTimer timerPulse_;   // chronometre pour la duree d'un pulse
 
 //PID POUR L'ANGLE
-float a_param[5] = {0.15, 1, 0, 0.2, 0}; //{kp,ki,kd,seuil,goal}
-PID a_pid(a_param[0], a_param[1], a_param[3]);
-double (*ptr_a_read)();
+float a_param[5] = {0.15, 3, 0, 0, 0};         //{kp,ki,kd,seuil,goal}
+PID a_pid(a_param[0], a_param[1], a_param[3]); //Constructeur
+double (*ptr_a_read)();                        //Pointeur vers la fonction qui fait la lecture
 
 //PID POUR LA POSITION
 float x_param[5] = {0, 0, 0, 0, 0};
@@ -55,16 +55,8 @@ bool a_pid_state = false;
 bool x_pid_state = false;
 int etat_robot = 1; //1: stablisation, 2: position + stabilisation
 
-double a_command = 0, x_command = 0, pwm_command = 0;
-
-double commande;
-double setPoint = 0;
-double kp = 0, ki = 0, kd = 0;
-PID_v1 angle_pid(&angleX, &commande, &setPoint, kp,ki, kd, DIRECT);
-void init_pid(){
-  angle_pid.SetOutputLimits(-255, 255);
-  angle_pid.SetMode(AUTOMATIC);
-}
+double x_cst = 0, a_cst = 0;
+double x_cmd = 0, a_cmd = 0, cmd = 0;
 /*---------------------------Definition de fonctions ------------------------*/
 void serialEvent()
 {
@@ -106,7 +98,7 @@ void readSerial()
 
   JsonArray angle_param = doc["angle_parametre"];
   if (angle_param)
-  {
+  { //reception des valeurs de l'interface vers l'arduino
     a_param[0] = angle_param[0];
     a_param[1] = angle_param[1];
     a_param[2] = angle_param[2];
@@ -130,6 +122,18 @@ void readSerial()
     etat_robot = etat;
   }
 
+  double cst_a = doc["a_cst"];
+  if (cst_a)
+  {
+    a_cst = cst_a;
+  }
+
+  double cst_x = doc["x_cst"];
+  if (cst_x)
+  {
+    x_cst = cst_x;
+  }
+
   shouldRead_ = false;
 }
 
@@ -137,28 +141,33 @@ void readSerial()
 void sendSerial()
 {
   StaticJsonDocument<512> doc;
-  // Construction du message a envoyer
+  //Envoit des informations de l'arduino vers l'interface
   imu_.getAngles(&angleX, &angleY, 2);
   doc["time"] = millis();
   doc["angleX"] = angleX;
   doc["sonar"] = rangeSensor_.getRange();
   //doc["error"] = error_;
-  // doc["inPulse"] = isInPulse_;
-  doc["kp_angle"] = a_param[0];
-  // doc["ki_angle"] = a_param[1];
+  //doc["inPulse"] = isInPulse_;
+  //doc["kp_angle"] = a_param[0];
+  //doc["ki_angle"] = a_param[1];
   //doc["kd_angle"] = a_param[2];
+  doc["x_cmd"] = x_cmd;
+  doc["a_cmd"] = a_cmd;
+  doc["cmd"] = cmd;
+  doc["a_cst"] = a_cst;
+  doc["x_cst"] = x_cst;
   //doc["seuil_angle"] = a_param[3];
   //doc["pos_angle"] = a_param[4];
+  //doc["etat_robot"] = etat_robot;
   //doc["kp_x"] = x_param[0];
   // doc["ki_x"] = x_param[1];
   // doc["kd_x"] = x_param[2];
   // doc["seuil_x"] = x_param[3];
   //doc["pos_x"] = x_param[4];
-  doc["etat_robot"] = etat_robot;
-  doc["commandeX"] = x_command;
-  doc["commandeA"] = a_command;
-  doc["commande"] = pwm_command;
-  // Serialisation
+  //doc["etat_robot"] = etat_robot;
+  //doc["commandeX"] = x_command;
+  //doc["commandeA"] = a_command;
+  //doc["commande"] = pwm_command;
   serializeJson(doc, Serial);
   // Envoit
   Serial.println();
@@ -166,19 +175,13 @@ void sendSerial()
 
 void endPulse()
 {
-  /* Rappel du chronometre */
   motor_.setPWM(0);
   timerPulse_.disable();
   isInPulse_ = false;
 }
 
-void x_run()
-{
-  x_pid.run();
-}
 void startPulse()
 {
-  /* Demarrage d'un pulse */
   timerPulse_.setDelay(pulseTime_);
   timerPulse_.enable();
   timerPulse_.setRepetition(1);
@@ -188,7 +191,7 @@ void startPulse()
 }
 
 double a_read()
-{
+{                     //Fonction qui fait la lecture de l'angle
   double qC, angle_x; //qC : angle du pendule -> angle Y du capteur
   imu_.getAngles(&angle_x, &qC, 2);
   return angle_x;
@@ -199,9 +202,8 @@ double x_read()
   return rangeSensor_.getRange();
 }
 
-
 void motor_command(double PWM)
-{
+{ //fonction pour la commande des moteurs
   motor_.setPWM(PWM);
 }
 
@@ -224,7 +226,7 @@ void init_main()
 }
 
 void init_a_pid()
-{
+{ //fonction qui permet l'initiation des méthodes du pid pour l'angle
   ptr_a_read = &a_read;
   a_pid.setCommandFunc(ptr_motor_command);
   a_pid.setMeasurementFunc(ptr_a_read);
@@ -238,10 +240,10 @@ void init_x_pid()
   ptr_x_read = &x_read;
   x_pid.setCommandFunc(ptr_motor_command);
   x_pid.setMeasurementFunc(ptr_x_read);
-  x_pid.setPeriod(10);
+  x_pid.setPeriod(5);
   x_pid.enable();
 }
-
+/*
 double a_x_read()
 {
   x_command = x_pid.returnCommand();
@@ -256,7 +258,7 @@ void init_a_x_pid()
   a_pid.setPeriod(10);
   a_pid.enable();
 }
-
+*/
 /*
   doc["1/"] = 0;
   doc["1time"] = millis();
@@ -277,3 +279,15 @@ void init_a_x_pid()
   doc["3seuil_x"] = x_param[3];
   doc["3pos_x"] = x_param[4];
   */
+
+/*
+double a_command = 0, x_command = 0, pwm_command = 0;
+
+double commande;
+double setPoint = 0;
+double kp = 0, ki = 0, kd = 0;
+PID_v1 angle_pid(&angleX, &commande, &setPoint, kp,ki, kd, DIRECT);
+void init_pid(){
+  angle_pid.SetOutputLimits(-255, 255);
+  angle_pid.SetMode(AUTOMATIC);
+}*/

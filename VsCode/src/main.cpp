@@ -1,60 +1,63 @@
 #include "init_main.h"
-double a_cst, x_cst;
-
-void etat1();
-void etat2();
 void read();
-void print()
-{
-  Serial.print("Angle: ");
-  Serial.print(angleX);
-  Serial.print("   Commande:  ");
-  Serial.print(commande);
-  Serial.print("  kd:  ");
-  Serial.println(kd);
-}
+bool activation = false;
 
 void setup()
 {
   init_main();
   init_a_pid();
   init_x_pid();
-  init_pid();
-  // init_a_x_pid();
-  ptr_a_x = &a_x_read;
-  init_a_pid();
-  pinMode(23, OUTPUT);
-  pinMode(25, OUTPUT);
+  //init_a_x_pid();
+  //pinMode(23, OUTPUT);
+  //pinMode(25, OUTPUT);
 }
 
 void loop()
 {
-  kd = map(analogRead(A7), 0, 1023, 0, 100);
-  angle_pid.SetTunings(38, 0,kd);
-  angleX = a_read();
-  angle_pid.Compute();
-  motor_.setPWM(commande);
-  print();
-  delay(10);
-  /*
   switch (etat_robot)
   {
   case 1: //Robot inactif
-  
+    if (activation != false)
+    {
+      a_pid.disable();
+      x_pid.disable();
+      motor_.disable();
+      activation = false;
+    }
+    a_pid.disable();
     read();
     break;
   case 2: //Stabilisation
+    if (activation != true)
+    {
+      a_pid.enable();
+      x_pid.disable();
+      activation = true;
+    }
     a_pid.run();
     read();
     break;
   case 3: //Deplacement
-     x_command = x_pid.returnCommand();
-    a_param[4] = 0 - x_command;
-    a_pid.setGoal(a_param[4]);
-    a_pid.run();
+    if (activation != true)
+    {
+      a_pid.enable();
+      x_pid.enable();
+      activation = true;
+    }
+    a_cmd = a_pid.returnCommand();
+    x_cmd = x_pid.returnCommand();
+    cmd = (a_cmd * a_cst) + (x_cmd * x_cst);
+    motor_command(cmd);
+    if(x_pid.isAtGoal() == true){
+      while(x_pid.isAtGoal() == true){
+        a_pid.run();
+        read();
+      }
+    
+    }
     read();
     break;
-  }*/
+  }
 }
 
 void read()
@@ -63,7 +66,6 @@ void read()
   {
     readSerial();
   }
-
   timerSendMsg_.update();
   timerPulse_.update();
 

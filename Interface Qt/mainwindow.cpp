@@ -117,9 +117,9 @@ void MainWindow::connectButtons(){
     connect(ui->checkBox, SIGNAL(stateChanged(int)), this, SLOT(manageRecording(int)));
     connect(ui->angle_envoie_pushButton, SIGNAL(clicked()), this, SLOT(sendPID()));
     connect(ui->x_envoie_pushButton, SIGNAL(clicked()), this, SLOT(sendPID_x()));
-    connect(ui->enable_pushButton,SIGNAL(clicked()),this,SLOT(enable()));
-    connect(ui->disable_pushButton,SIGNAL(clicked()),this,SLOT(disable()));
     connect(ui->pushButton_etatrobot,SIGNAL(clicked()),this,SLOT(etat_robot()));
+    connect(ui->pushButton_a_cst,SIGNAL(clicked()),this,SLOT(a_cst()));
+    connect(ui->pushButton_x_cst,SIGNAL(clicked()),this,SLOT(x_cst()));
 }
 
 void MainWindow::connectSpinBoxes(){
@@ -231,8 +231,6 @@ void MainWindow::etat_robot(){
     // Fonction SLOT pour envoyer les paramettres de pulse
     int etat_robot = ui->lineEdit_etatrobot->text().toDouble();
 
-
-
     if(etat_robot == 2){
         ui->label_activation_robot->setText("Stabilisation");
     }
@@ -251,7 +249,33 @@ void MainWindow::etat_robot(){
     sendMessage(strJson);
 }
 
+void MainWindow::a_cst(){
+    // Fonction SLOT pour envoyer les paramettres de pulse
+    double a_cst = ui->lineEdit_a_cst->text().toDouble();
+    ui->label_a_cst_val->setText(QString::number(a_cst));
 
+    QJsonObject jsonObject
+    {// pour minimiser le nombre de decimales( QString::number)
+        {"a_cst", a_cst},
+    };
+    QJsonDocument doc(jsonObject);
+    QString strJson(doc.toJson(QJsonDocument::Compact));
+    sendMessage(strJson);
+}
+
+void MainWindow::x_cst(){
+    // Fonction SLOT pour envoyer les paramettres de pulse
+    double x_cst = ui->lineEdit_x_cst->text().toDouble();
+    ui->label_x_cst_val->setText(QString::number(x_cst));
+
+    QJsonObject jsonObject
+    {// pour minimiser le nombre de decimales( QString::number)
+        {"x_cst", x_cst},
+    };
+    QJsonDocument doc(jsonObject);
+    QString strJson(doc.toJson(QJsonDocument::Compact));
+    sendMessage(strJson);
+}
 
 void MainWindow::enable(){
     QJsonObject jsonObject
@@ -327,7 +351,7 @@ void MainWindow::manageRecording(int stateButton){
 void MainWindow::startRecording(){
     // Fonction SLOT pour creation d'un nouveau fichier csv
     record = true;
-    writer_ = new CsvWriter("/home/pi/Desktop/");
+    writer_ = new CsvWriter("C:\\Users\\raphc\\Desktop\\test.txt");
     ui->label_pathCSV->setText(writer_->folder+writer_->filename);
 }
 

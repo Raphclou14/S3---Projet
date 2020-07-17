@@ -53,6 +53,8 @@ private slots:
     void enable();
     void disable();
     void etat_robot();
+    void a_cst();
+    void x_cst();
 
 private:
     void connectTimers(int updateRate);
